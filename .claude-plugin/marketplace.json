@@ -9,5 +9,13 @@
     "version": "0.1.0",
     "pluginRoot": "./plugins"
   },
-  "plugins": []
+  "plugins": [
+    {
+      "name": "fire-opal",
+      "source": "./plugins/fire-opal",
+      "description": "Run Q-CTRL Fire Opal from Claude Code through the Q-CTRL MCP server: validate and execute circuits with automated error suppression, estimate expectation values, and run QAOA, dynamics and quantum Monte Carlo workloads. Sign in with your Q-CTRL account, with nothing installed locally.",
+      "homepage": "https://docs.q-ctrl.com/fire-opal",
+      "category": "quantum-computing"
+    }
+  ]
 }

@@ -80,6 +80,21 @@ Then, in the Claude Code session, sign in and set up:
 
 In `/mcp`, select `plugin:fire-opal:qctrl` and sign in with your Q-CTRL account in the browser.
 
+## What this plugin runs, sends and fetches
+
+**Sends.** Through the Q-CTRL MCP server (`https://mcp.q-ctrl.com/mcp`), the plugin sends the circuits (OpenQASM text), observables, problem definitions, backend names, shot counts and run options you ask it to run. The server sends them on to the hardware provider of the credential you pick (IBM Cloud, Amazon Braket or IonQ). Read-only calls send job IDs, credential names and documentation search text. Nothing is sent to any other service. See the [Q-CTRL privacy policy](https://q-ctrl.com/privacy).
+
+**Runs on your computer.**
+
+- `python3` with your own Qiskit, only when you give a `.py` circuit file. This runs that file, so it runs your code. Claude says which file it runs. `.qasm` files need nothing local.
+- `sleep`, in the background, to wait between job status checks.
+- `curl`, only when you ask to save a full result. It downloads the result JSON from a short-lived download link that the Q-CTRL server gives.
+- Optional numpy or scipy calculations, only when you agree: classical comparisons, and parameter updates in variational loops.
+
+**Writes.** Files go only to `fire-opal-results/` in your project, and only when a command or you ask for them.
+
+**Sign-in and credentials.** You sign in with your Q-CTRL account through the server's OAuth flow in your browser. Hardware credentials are entered on a secure Q-CTRL web page and saved on the server. The plugin never asks for keys or tokens in the chat and stores none on your computer.
+
 ## How it works
 
 - `.mcp.json` adds the Q-CTRL MCP server (`qctrl`) with the public OAuth client `mcp-login`. Claude Code signs you in with your Q-CTRL account and keeps the token. It points at the production server (`https://mcp.q-ctrl.com/mcp`).

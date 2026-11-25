@@ -1,23 +1,72 @@
-# Q-CTRL Template
+# Q-CTRL Claude Code Marketplace
 
-A good description is clear, short, and to the point. Describe the purpose of the repository and what it does. Your README should contain only the necessary information for **developers** to get started **contributing** to your project.
+A [Claude Code plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces) for Q-CTRL plugins.
 
 ## Installation
 
-Describe how to install the project locally then **DELETE THIS LINE**. For example:
+Add the marketplace in Claude Code:
 
 ```shell
-git clone git@github.com:qctrl/[REPOSITORY].git
-cd [REPOSITORY]
-install...
+/plugin marketplace add qctrl/marketplace
 ```
 
-## Usage
-
-Describe how to use the project after installation then **DELETE THIS LINE**. For example:
+Then install a plugin from it:
 
 ```shell
-run...
+/plugin install <plugin-name>@qctrl
+```
+
+## Repository layout
+
+```text
+.claude-plugin/
+  marketplace.json      # Marketplace catalog. Lists every plugin.
+plugins/
+  <plugin-name>/        # One folder per plugin.
+    .claude-plugin/
+      plugin.json       # Plugin manifest.
+    skills/             # Optional: skills (skills/<name>/SKILL.md).
+    agents/             # Optional: subagents.
+    hooks/              # Optional: hooks (hooks/hooks.json).
+    .mcp.json           # Optional: MCP servers.
+```
+
+## Adding a plugin
+
+1. Create `plugins/<plugin-name>/.claude-plugin/plugin.json`:
+
+   ```json
+   {
+     "name": "<plugin-name>",
+     "description": "What the plugin does.",
+     "version": "0.1.0"
+   }
+   ```
+
+2. Add the plugin's skills, agents, hooks, or MCP servers to `plugins/<plugin-name>/`.
+
+3. Add an entry to the `plugins` array in `.claude-plugin/marketplace.json`:
+
+   ```json
+   {
+     "name": "<plugin-name>",
+     "source": "./plugins/<plugin-name>",
+     "description": "What the plugin does."
+   }
+   ```
+
+4. Validate:
+
+   ```shell
+   claude plugin validate .
+   ```
+
+## Testing locally
+
+Add your local checkout as a marketplace:
+
+```shell
+/plugin marketplace add ./path/to/marketplace
 ```
 
 ## Contributing
@@ -26,17 +75,7 @@ See [Contributing](https://code.q-ctrl.com/contributing).
 
 ## Credits
 
-Replace `[REPOSITORY]` in the URL below with the name of the repository then **DELETE THIS LINE**.
-
-See [Contributors](https://github.com/qctrl/[REPOSITORY]/graphs/contributors).
-
-## License
-
-- If **Unlicensed:**
-  - Delete this entire [License](#license) section.
-- **DELETE THIS LIST**.
-
-See [LICENSE](https://github.com/qctrl/[REPOSITORY]/blob/master/LICENSE).
+See [Contributors](https://github.com/qctrl/marketplace/graphs/contributors).
 
 ## Version
 

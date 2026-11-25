@@ -1,0 +1,13 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "qctrl",
+  "owner": {
+    "name": "Q-CTRL"
+  },
+  "metadata": {
+    "description": "Q-CTRL plugins for Claude Code.",
+    "version": "0.1.0",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": []
+}

@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "qctrl": {
+      "type": "http",
+      "url": "https://mcp-server.private.dev.q-ctrl.com/mcp",
+      "oauth": {
+        "clientId": "mcp-login"
+      }
+    }
+  }
+}

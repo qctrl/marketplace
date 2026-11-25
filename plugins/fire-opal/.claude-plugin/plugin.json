@@ -8,6 +8,7 @@
     "url": "https://q-ctrl.com"
   },
   "homepage": "https://docs.q-ctrl.com/fire-opal",
+  "icon": "./logo.png",
   "privacyPolicyUrl": "https://q-ctrl.com/privacy",
   "license": "SEE LICENSE IN LICENSE",
   "keywords": ["quantum", "quantum-computing", "error-suppression", "qiskit", "q-ctrl", "fire-opal", "qaoa", "vqe", "monte-carlo", "quantum-simulation", "mcp"]

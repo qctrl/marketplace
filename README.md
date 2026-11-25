@@ -16,6 +16,12 @@ Then install a plugin from it:
 /plugin install <plugin-name>@qctrl
 ```
 
+## Plugins
+
+| Plugin | What it does |
+| --- | --- |
+| [`fire-opal`](./plugins/fire-opal) | Run Q-CTRL Fire Opal through the Q-CTRL MCP server: validate and run circuits, estimate expectation values, and run QAOA, dynamics and Monte Carlo workloads. |
+
 ## Repository layout
 
 ```text

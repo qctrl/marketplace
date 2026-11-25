@@ -1,5 +1,6 @@
 {
   "name": "fire-opal",
+  "version": "0.1.0",
   "displayName": "Fire Opal",
   "description": "Run Q-CTRL Fire Opal from Claude Code through the Q-CTRL MCP server: validate and execute circuits with automated error suppression on IBM and Amazon Braket hardware, estimate expectation values, run variational and batch workloads in reusable sessions, solve QAOA problems, simulate Fermi-Hubbard dynamics, and price with quantum Monte Carlo integration via /fire-opal:* slash commands.",
   "author": {

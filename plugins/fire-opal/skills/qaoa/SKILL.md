@@ -3,7 +3,7 @@ name: qaoa
 description: Solve a binary optimization problem (Max-Cut, Max-k-Cut, a polynomial cost function, or a diagonal Ising Hamiltonian) on real hardware with Fire Opal's managed QAOA solver.
 argument-hint: "<problem description, graph file, or cost function> [backend]"
 disable-model-invocation: true
-allowed-tools: mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_show_supported_devices mcp__plugin_fire-opal_qctrl__qctrl_list_credentials mcp__plugin_fire-opal_qctrl__qctrl_get_job mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_get_qaoa_results
+allowed-tools: mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_show_supported_devices mcp__plugin_fire-opal_qctrl__qctrl_list_credentials mcp__plugin_fire-opal_qctrl__qctrl_get_job mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_get_qaoa_results Bash(sleep:*)
 ---
 
 # Solve an optimization problem with Fire Opal QAOA
@@ -23,8 +23,8 @@ Steps:
 
 2. **Pick the backend.** `backend_name` is required. For IBM Cloud, call `qctrl_fire_opal_show_supported_devices`. IonQ credentials cannot list devices, so ask the user for the IonQ backend name.
 
-3. **Submit.** State the problem size (nodes and edges, or variables) and backend first. The submit tool is not pre-approved, so Claude Code asks the user to confirm it. Then call `qctrl_fire_opal_solve_qaoa`. On IBM, pass `run_options` (`job_tags`, `session_id`, `reduce_approximation`) when the user asks.
+3. **Submit.** State the problem size (nodes and edges, or variables) and backend first. Then ask the user to confirm and wait for a clear yes. Do not rely on the tool permission prompt: in some permission modes it does not appear. Then call `qctrl_fire_opal_solve_qaoa`. On IBM, pass `run_options` (`job_tags`, `session_id`, `reduce_approximation`) when the user asks.
 
-4. **Wait.** QAOA runs many iterations and usually takes longer than a single execution. Call `qctrl_get_job` until `SUCCESS`, `FAILURE` or `REVOKED`, starting about 30 seconds apart. If it's still running after a few checks, give the job ID and point to `/fire-opal:result <job_id>`.
+4. **Wait.** QAOA runs many iterations and usually takes longer than a single execution. Call `qctrl_get_job` until `SUCCESS`, `FAILURE` or `REVOKED`. Between checks, wait about 30 seconds, longer each time, with a background `sleep` command. Never call `qctrl_get_job` again straight away. If it's still running after a few checks, give the job ID and point to `/fire-opal:result <job_id>`.
 
 5. **Interpret.** Call `qctrl_fire_opal_get_qaoa_results`. Report the solution bitstring and its cost, translated back into the user's terms using `variables_to_bitstring_index_map` (for Max-Cut: which nodes fall on each side and how many edges are cut). Include the iteration count and the top of the final distribution. For small problems (≲ 20 variables), offer to brute-force the classical optimum to compare.

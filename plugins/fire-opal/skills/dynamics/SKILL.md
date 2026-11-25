@@ -3,7 +3,7 @@ name: dynamics
 description: Simulate time evolution of a 1D Fermi-Hubbard chain on quantum hardware with Fire Opal's managed dynamics simulator (simulate_dynamics), and measure site occupations or custom occupation observables over time.
 argument-hint: "<initial state, e.g. eeeu> [hopping U mu dt steps] [backend]"
 disable-model-invocation: true
-allowed-tools: mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_show_supported_devices mcp__plugin_fire-opal_qctrl__qctrl_list_credentials mcp__plugin_fire-opal_qctrl__qctrl_get_job mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_get_dynamics_results
+allowed-tools: mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_show_supported_devices mcp__plugin_fire-opal_qctrl__qctrl_list_credentials mcp__plugin_fire-opal_qctrl__qctrl_get_job mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_get_dynamics_results Bash(sleep:*)
 ---
 
 # Quantum dynamics simulation with Fire Opal
@@ -40,8 +40,8 @@ Keep circuits shallow: the number of Trotter steps drives circuit depth, so long
 ## Run
 
 1. Pick the backend with `qctrl_fire_opal_show_supported_devices`, unless the user named one. Suggest 2048 shots.
-2. State the configuration in one compact block: lattice, initial state, J/U/μ, dt × steps = total time, observables, shots, backend. The submit tool is not pre-approved, so Claude Code asks the user to confirm. Then call `qctrl_fire_opal_simulate_dynamics`.
-3. Wait: call `qctrl_get_job` until `SUCCESS`, `FAILURE` or `REVOKED`, starting about 30 seconds apart. If the job is still queued after a few checks, give the job ID and point to `/fire-opal:result <job_id>`.
+2. State the configuration in one compact block: lattice, initial state, J/U/μ, dt × steps = total time, observables, shots, backend. Then ask the user to confirm and wait for a clear yes. Do not rely on the tool permission prompt: in some permission modes it does not appear. Then call `qctrl_fire_opal_simulate_dynamics`.
+3. Wait: call `qctrl_get_job` until `SUCCESS`, `FAILURE` or `REVOKED`. Between checks, wait about 30 seconds, longer each time, with a background `sleep` command. Never call `qctrl_get_job` again straight away. If the job is still queued after a few checks, give the job ID and point to `/fire-opal:result <job_id>`.
 
 ## Report
 

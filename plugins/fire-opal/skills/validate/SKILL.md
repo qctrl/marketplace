@@ -12,10 +12,10 @@ Arguments: `$ARGUMENTS`. The first argument is the circuit source; an optional s
 1. **Get OpenQASM text.** The MCP tools take each circuit as OpenQASM 2.0 or 3.0 text, under 1 MB each, at most 300 per call.
 
    - `.qasm` files or a directory of them: read them.
-   - A `.py` file: export its module-level `QuantumCircuit` objects with the user's own Python, which must have Qiskit installed:
+   - A `.py` file: export its module-level `QuantumCircuit` objects with the user's own Python, which must have Qiskit installed. Python is only needed for `.py` files: `.qasm` files need nothing local. If `python3` or Qiskit is missing, say so and ask the user for `.qasm` files instead:
 
      ```bash
-     python - path/to/file.py <<'EOF'
+     python3 - path/to/file.py <<'EOF'
      import pathlib, runpy, sys
      from qiskit import QuantumCircuit, qasm2, qasm3
      out = pathlib.Path("fire-opal-results/circuits")

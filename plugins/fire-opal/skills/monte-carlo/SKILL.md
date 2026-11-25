@@ -3,7 +3,7 @@ name: monte-carlo
 description: Estimate expectation values with quantum Monte Carlo integration on hardware via Fire Opal's integrate_monte_carlo, e.g. European call option price or delta, fixed-income pricing, or credit risk with a Gaussian conditional independence model, or a custom state-preparation circuit.
 argument-hint: "<problem description or preparation circuit> [backend]"
 disable-model-invocation: true
-allowed-tools: mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_show_supported_devices mcp__plugin_fire-opal_qctrl__qctrl_list_credentials mcp__plugin_fire-opal_qctrl__qctrl_get_job mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_get_monte_carlo_results
+allowed-tools: mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_show_supported_devices mcp__plugin_fire-opal_qctrl__qctrl_list_credentials mcp__plugin_fire-opal_qctrl__qctrl_get_job mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_get_monte_carlo_results Bash(sleep:*)
 ---
 
 # Monte Carlo integration with Fire Opal
@@ -53,8 +53,8 @@ Pass `preparation_circuit` as OpenQASM 2.0 text (for Qiskit, `qiskit.qasm2.dumps
 
 1. Translate the request into a distribution and objective, or a circuit. Show the user the discretization: the number of points, the bounds, and what the estimated quantity means in their units. Watch for **variance vs. standard deviation** in `sigma`, which is easy to get wrong. Ask about anything that changes the answer and isn't stated, such as the strike, the volatility, or the bounds.
 2. Pick the backend with `qctrl_fire_opal_show_supported_devices`, unless the user named one.
-3. State the plan in one block: the problem, qubits per dimension, max iterations, and backend. The submit tool is not pre-approved, so Claude Code asks the user to confirm. Then call `qctrl_fire_opal_integrate_monte_carlo`. Pass `run_options` (`job_tags`, `session_id`, `reduce_approximation`) when the user asks.
-4. Wait: call `qctrl_get_job` until `SUCCESS`, `FAILURE` or `REVOKED`, starting about 30 seconds apart. If the job is still queued after a few checks, give the job ID and point to `/fire-opal:result <job_id>`.
+3. State the plan in one block: the problem, qubits per dimension, max iterations, and backend. Then ask the user to confirm and wait for a clear yes. Do not rely on the tool permission prompt: in some permission modes it does not appear. Then call `qctrl_fire_opal_integrate_monte_carlo`. Pass `run_options` (`job_tags`, `session_id`, `reduce_approximation`) when the user asks.
+4. Wait: call `qctrl_get_job` until `SUCCESS`, `FAILURE` or `REVOKED`. Between checks, wait about 30 seconds, longer each time, with a background `sleep` command. Never call `qctrl_get_job` again straight away. If the job is still queued after a few checks, give the job ID and point to `/fire-opal:result <job_id>`.
 
 ## Report
 

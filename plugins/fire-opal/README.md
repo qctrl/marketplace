@@ -26,7 +26,7 @@ On IBM backends, the submitting commands except `dynamics` also accept run optio
 
 The plugin also includes a background reference skill covering the whole `fireopal` API: every function, type and run option. Claude uses it when you ask it to write or debug your own Fire Opal code, which runs in your own Python environment.
 
-Commands that submit jobs (`run`, `expectation`, `iterate`, `qaoa`, `dynamics`, `monte-carlo`) run only when you type them, and Claude Code asks you to approve the submit tool call before anything is sent to hardware. Validation, status checks and result retrieval run without prompts.
+Commands that submit jobs (`run`, `expectation`, `iterate`, `qaoa`, `dynamics`, `monte-carlo`) run only when you type them, and Claude asks for your yes in the chat before anything is sent to hardware. The submit tools are also not pre-approved, so Claude Code asks you to approve the tool call in permission modes that prompt. Validation, status checks and result retrieval run without prompts.
 
 ### Providers
 
@@ -105,4 +105,4 @@ In `/mcp`, select `plugin:fire-opal:qctrl` and sign in with your Q-CTRL account 
 
 - Claude Code with plugin and MCP OAuth support
 - A Q-CTRL account in an organization with Fire Opal, and credentials for at least one supported hardware provider
-- For Python circuit files: Python with Qiskit
+- Optional, only for Qiskit `.py` circuit files: Python 3 with Qiskit

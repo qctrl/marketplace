@@ -1,7 +1,6 @@
 ---
 name: setup
-description: Sign in to the Q-CTRL MCP server, check the user's Q-CTRL organization and Fire Opal access, and add, replace or remove hardware-provider credentials on the server.
-disable-model-invocation: true
+description: Sign in to the Q-CTRL MCP server, check the user's Q-CTRL organization and Fire Opal access, and add, replace or remove hardware-provider credentials on the server. Use when the user wants to set up Fire Opal, sign in to Q-CTRL, or add hardware credentials.
 allowed-tools: mcp__plugin_fire-opal_qctrl__qctrl_whoami mcp__plugin_fire-opal_qctrl__qctrl_list_credentials mcp__plugin_fire-opal_qctrl__qctrl_add_credential
 ---
 

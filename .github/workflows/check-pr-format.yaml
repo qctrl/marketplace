@@ -1,0 +1,55 @@
+---
+name: Check PR format
+
+on:
+  pull_request:
+    types: [opened, reopened, edited, synchronize]
+    branches: [master]
+
+jobs:
+  check_pr_format:
+    name: "Check PR format"
+    runs-on: ubuntu-latest
+    env:
+      PR_TITLE: ${{ github.event.pull_request.title }}
+    steps:
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install gitlint==0.17.0 pyinflect==0.5.1
+
+      - name: Check PR title is a conventional commit
+        run: |
+          cat > "$RUNNER_TEMP/.gitlint" <<'EOF'
+          [general]
+          contrib=contrib-title-conventional-commits
+          ignore=body-is-missing
+          EOF
+          printf '%s\n' "$PR_TITLE" | gitlint --config "$RUNNER_TEMP/.gitlint"
+
+      - name: Check verb tense in PR title
+        shell: python
+        run: |
+          import os
+          import pyinflect
+
+          # Verbs not covered by pyinflect that we allow.
+          ALLOWED_VERBS = {"Refactor"}
+
+          def validate_verb(verb):
+              if verb in ALLOWED_VERBS:
+                  return True
+              if not verb.istitle():
+                  return False
+              infinitive = pyinflect.getInflection(verb, "VB")
+              return infinitive is not None and infinitive[0] == verb
+
+          words = os.environ["PR_TITLE"].split(" ", 2)
+          verb = words[1] if len(words) > 1 else ""
+          assert validate_verb(verb), (
+              f"The first word in the PR title ({verb}) should be an infinitive verb like "
+              '"Add", "Fix", or "Replace" (rather than "Adds", "Fixed", or "Replacing"), '
+              "and start with an uppercase letter."
+          )

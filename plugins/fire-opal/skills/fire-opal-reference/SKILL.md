@@ -35,7 +35,7 @@ creds = fo.credentials.make_credentials_for_ibm_cloud(token="YOUR_IBM_CLOUD_API_
 backends = fo.show_supported_devices(credentials=creds)["supported_devices"]
 ```
 
-The values above are placeholders. Never hard-code real API keys in code you write; let the user supply them in their own environment. User code runs in the user's own Python environment, with `fire-opal` installed there; this plugin installs nothing and keeps no keys locally.
+The values above are placeholders. Ask the user to set their keys as environment variables or use the browser login. Never put real keys in the file. User code runs in the user's own Python environment, with `fire-opal` installed there; this plugin installs nothing and keeps no keys locally.
 
 **Job objects.** Every job function except `validate` returns a `FireOpalJob` immediately. It has:
 

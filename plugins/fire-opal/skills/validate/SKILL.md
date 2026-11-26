@@ -2,7 +2,6 @@
 name: validate
 description: Check quantum circuits (OpenQASM files or Qiskit circuits in a Python file) against Fire Opal's requirements for a backend, without using hardware time. Use before running circuits with Fire Opal, or when the user asks whether a circuit is Fire Opal compatible.
 argument-hint: "<circuit.qasm|circuits_dir|circuit.py> [backend]"
-allowed-tools: mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_validate mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_show_supported_devices mcp__plugin_fire-opal_qctrl__qctrl_list_credentials
 ---
 
 # Validate circuits with Fire Opal

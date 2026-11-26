@@ -3,7 +3,6 @@ name: dynamics
 description: Simulate time evolution of a 1D Fermi-Hubbard chain on quantum hardware with Fire Opal's managed dynamics simulator (simulate_dynamics), and measure site occupations or custom occupation observables over time.
 argument-hint: "<initial state, e.g. eeeu> [hopping U mu dt steps] [backend]"
 disable-model-invocation: true
-allowed-tools: mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_show_supported_devices mcp__plugin_fire-opal_qctrl__qctrl_list_credentials mcp__plugin_fire-opal_qctrl__qctrl_get_job mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_get_dynamics_results Bash(sleep:*)
 ---
 
 # Quantum dynamics simulation with Fire Opal

@@ -3,7 +3,6 @@ name: qaoa
 description: Solve a binary optimization problem (Max-Cut, Max-k-Cut, a polynomial cost function, or a diagonal Ising Hamiltonian) on real hardware with Fire Opal's managed QAOA solver.
 argument-hint: "<problem description, graph file, or cost function> [backend]"
 disable-model-invocation: true
-allowed-tools: mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_show_supported_devices mcp__plugin_fire-opal_qctrl__qctrl_list_credentials mcp__plugin_fire-opal_qctrl__qctrl_get_job mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_get_qaoa_results Bash(sleep:*)
 ---
 
 # Solve an optimization problem with Fire Opal QAOA

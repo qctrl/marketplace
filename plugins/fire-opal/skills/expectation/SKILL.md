@@ -3,7 +3,6 @@ name: expectation
 description: Estimate expectation values of Pauli observables for quantum circuits on real hardware with Fire Opal's error suppression and mitigation.
 argument-hint: "<circuit.qasm|circuit.py> <observable(s)> [backend] [shots]"
 disable-model-invocation: true
-allowed-tools: mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_validate mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_show_supported_devices mcp__plugin_fire-opal_qctrl__qctrl_list_credentials mcp__plugin_fire-opal_qctrl__qctrl_get_job mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_get_circuit_results Bash(sleep:*)
 ---
 
 # Estimate expectation values with Fire Opal

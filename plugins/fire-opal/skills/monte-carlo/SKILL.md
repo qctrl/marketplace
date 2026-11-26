@@ -3,7 +3,6 @@ name: monte-carlo
 description: Estimate expectation values with quantum Monte Carlo integration on hardware via Fire Opal's integrate_monte_carlo, e.g. European call option price or delta, fixed-income pricing, or credit risk with a Gaussian conditional independence model, or a custom state-preparation circuit.
 argument-hint: "<problem description or preparation circuit> [backend]"
 disable-model-invocation: true
-allowed-tools: mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_show_supported_devices mcp__plugin_fire-opal_qctrl__qctrl_list_credentials mcp__plugin_fire-opal_qctrl__qctrl_get_job mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_get_monte_carlo_results Bash(sleep:*)
 ---
 
 # Monte Carlo integration with Fire Opal

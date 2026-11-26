@@ -2,7 +2,6 @@
 name: jobs
 description: List recent Fire Opal jobs with their status and job IDs. Use when the user asks about their Fire Opal job history, queued jobs, or what they ran recently.
 argument-hint: "[limit] [SUCCESS|FAILURE|REVOKED|PENDING|RECEIVED|RETRY|STARTED]"
-allowed-tools: mcp__plugin_fire-opal_qctrl__qctrl_list_jobs
 ---
 
 # Fire Opal job history

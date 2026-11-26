@@ -2,7 +2,6 @@
 name: result
 description: Check the status of a Fire Opal job and fetch, save and summarize its result once finished. Use when the user gives a Fire Opal job ID or asks whether a submitted job is done.
 argument-hint: "<job_id>"
-allowed-tools: mcp__plugin_fire-opal_qctrl__qctrl_get_job mcp__plugin_fire-opal_qctrl__qctrl_list_jobs mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_get_circuit_results mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_get_qaoa_results mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_get_dynamics_results mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_get_monte_carlo_results mcp__plugin_fire-opal_qctrl__qctrl_get_results_link
 ---
 
 # Fetch a Fire Opal result

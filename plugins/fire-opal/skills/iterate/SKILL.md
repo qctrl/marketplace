@@ -3,7 +3,6 @@ name: iterate
 description: Run iterative or batch Fire Opal workloads inside one reusable provider session (iterate, iterate_expectation, stop_iterate). Covers parameter sweeps, more than 300 circuits, and variational loops such as VQE.
 argument-hint: "<sweep|vqe|stop> <circuit(s)> [details]"
 disable-model-invocation: true
-allowed-tools: mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_validate mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_show_supported_devices mcp__plugin_fire-opal_qctrl__qctrl_list_credentials mcp__plugin_fire-opal_qctrl__qctrl_get_job mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_get_circuit_results mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_stop_iterate Bash(sleep:*)
 ---
 
 # Iterative and batch workloads with Fire Opal

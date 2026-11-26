@@ -3,7 +3,6 @@ name: run
 description: Validate and run quantum circuits on real hardware through Fire Opal's error-suppression pipeline, then retrieve and summarize the results.
 argument-hint: "<circuit.qasm|circuits_dir|circuit.py> [backend] [shots]"
 disable-model-invocation: true
-allowed-tools: mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_validate mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_show_supported_devices mcp__plugin_fire-opal_qctrl__qctrl_list_credentials mcp__plugin_fire-opal_qctrl__qctrl_get_job mcp__plugin_fire-opal_qctrl__qctrl_fire_opal_get_circuit_results Bash(sleep:*)
 ---
 
 # Run circuits with Fire Opal

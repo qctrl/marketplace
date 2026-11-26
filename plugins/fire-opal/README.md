@@ -26,7 +26,7 @@ On IBM backends, the submitting commands except `dynamics` also accept run optio
 
 The plugin also includes a background reference skill covering the whole `fireopal` API: every function, type and run option. Claude uses it when you ask it to write or debug your own Fire Opal code, which runs in your own Python environment.
 
-Commands that submit jobs (`run`, `expectation`, `iterate`, `qaoa`, `dynamics`, `monte-carlo`) run only when you type them, and Claude asks for your yes in the chat before anything is sent to hardware. The submit tools are also not pre-approved, so Claude Code asks you to approve the tool call in permission modes that prompt. Validation, status checks and result retrieval run without prompts.
+Commands that submit jobs (`run`, `expectation`, `iterate`, `qaoa`, `dynamics`, `monte-carlo`) run only when you type them, and Claude asks for your yes in the chat before anything is sent to hardware. No tools are pre-approved, so in permission modes that prompt, Claude Code asks you to approve each tool call, including validation, status checks and result retrieval.
 
 ### Providers
 
@@ -98,7 +98,7 @@ In `/mcp`, select `plugin:fire-opal:qctrl` and sign in with your Q-CTRL account 
 ## How it works
 
 - `.mcp.json` adds the Q-CTRL MCP server (`qctrl`) with the public OAuth client `mcp-login`. Claude Code signs you in with your Q-CTRL account and keeps the token. It points at the production server (`https://mcp.q-ctrl.com/mcp`).
-- Each skill tells Claude which MCP tools to call and how to explain the results. Read-only tools are pre-approved in each skill's `allowed-tools`; tools that submit jobs are not.
+- Each skill tells Claude which MCP tools to call and how to explain the results. No tools are pre-approved, so Claude Code asks before each MCP tool call unless you allow it.
 - Hardware credentials are saved on the server through a secure Q-CTRL page (`qctrl_add_credential`), never in the chat.
 - Tools that submit a job return a job ID straight away. Claude checks `qctrl_get_job` until it finishes, then calls the results tool it names.
 

@@ -28,14 +28,14 @@ For full signatures, parameter meanings, return formats and worked examples of e
 ## Essentials
 
 ```python
-import os, fireopal as fo
-fo.authenticate_qctrl_account(api_key=os.environ["QCTRL_API_KEY"])     # locally, a browser login also works
-creds = fo.credentials.make_credentials_for_ibm_cloud(token=os.environ["IBM_CLOUD_API_KEY"],
-                                                     instance=os.environ["IBM_CLOUD_CRN"])
+import fireopal as fo
+fo.authenticate_qctrl_account(api_key="YOUR_API_KEY")     # locally, a browser login also works
+creds = fo.credentials.make_credentials_for_ibm_cloud(token="YOUR_IBM_CLOUD_API_KEY",
+                                                     instance="YOUR_IBM_CLOUD_CRN")
 backends = fo.show_supported_devices(credentials=creds)["supported_devices"]
 ```
 
-Never hard-code API keys in code you write. Read them from environment variables. User code runs in the user's own Python environment, with `fire-opal` installed there; this plugin installs nothing and keeps no keys locally.
+The values above are placeholders. Ask the user to set their keys as environment variables or use the browser login. Never put real keys in the file. User code runs in the user's own Python environment, with `fire-opal` installed there; this plugin installs nothing and keeps no keys locally.
 
 **Job objects.** Every job function except `validate` returns a `FireOpalJob` immediately. It has:
 
